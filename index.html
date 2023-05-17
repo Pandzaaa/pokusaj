@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="images/hello-icon-152.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="white"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Hello World">
+    <meta name="msapplication-TileImage" content="images/hello-icon-144.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+   <style>
+    
+        html {
+      background: #a4b6d3;
+    }
+    
+    *:focus { outline:none; }
+    
+    h1 {
+      font-family: 'Rock Salt', cursive;
+      text-align: center;
+    }
+    .progressbar {
+     width: 25px;
+     height: 215px;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     margin-top: -107px;
+     margin-left: -22px;
+     background: #fff;
+     border: 10px solid #333;
+     border-bottom: 0;
+     -webkit-border-top-left-radius: 60px;
+    -webkit-border-top-right-radius: 60px;
+    -moz-border-radius-topleft: 60px;
+    -moz-border-radius-topright: 60px;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+    } 
+    
+    .progressbar::before {
+      content: " ";
+      position: absolute;
+      z-index: 0;
+      bottom: -56px;
+      left: -18px;
+      width: 40px;
+      border: 10px solid #fff;
+      height: 40px;
+      -webkit-border-radius: 30px;
+      -moz-border-radius: 30px;
+      border-radius: 30px;
+    }
+    
+    .progressbar::after {
+      content: "";
+      display: block;  
+      width: 60px;
+      height: 60px;
+      position: absolute;
+      bottom: -66px;
+      left: -28px;
+      background: red;
+      border: 10px solid #333;
+      -webkit-border-radius: 60px;
+      -moz-border-radius: 60px;
+      border-radius: 60px;
+      z-index: -1;
+    }
+    
+    .progressbar-value {
+    font-family: Segoe UI,Arial,sans-serif;
+     position: absolute;
+     display: block;
+     margin: 0;
+     border: 0;
+     width: 8px;
+     height: 200px;
+     top: 21px;
+     left: 8px;
+     overflow: hidden;
+     text-indent: -30px;
+     background: red;
+    }
+    .progressbar-cover {
+     position: absolute;
+     display: block;
+     width: 8px;
+     height: 200px;
+     border: 0;
+     left: 0;
+     bottom: 0%;
+     background: #ccc;
+    }
+    
+    #slider { 
+      position:absolute; 
+      top: 50%;
+      left: 50%;
+      margin-top: -77px;
+      margin-left: -22px;
+      width: 45px; 
+      height: 200px; 
+      background: none;
+      border:none; 
+    }
+    
+    .ui-slider-vertical .ui-slider-handle { 
+      left: 80px;
+      background: #fff;
+      width: 80px;
+      height: 34px;
+      border: none;
+      border-radius: 0;
+      font-family: 'Rock Salt';
+      font-size: 12px;
+      padding-top: 7px;
+    }
+    
+    .ui-slider-handle::before { 
+     content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-top: 21px solid transparent;
+        border-bottom: 21px solid transparent;
+        border-right: 21px solid #fff;
+        left: -21px;
+        top: -1px; 
+    }
+    </style>
+</head>
+<body>
+    <div class="progressbar">
+        <span class="progressbar-value">
+         <em class="progressbar-cover"></em>
+        </span>
+       </div>
+       <script>
+        $(function(){
+            var bkcolor;
+            var textvalue;
+            $('.progressbar').slider({
+                orientation: "vertical",
+                slide: function(event, ui) {
+                    bkcolor = (ui.value < 35) ? '#a4b6d3' :'#b5b776';
+                    textvalue = (ui.value <35) ? "Brrr..." :"That's better...";
+                    if (ui.value > 66) {
+                        bkcolor = '#d08f8f';
+                        textvalue = 'Ouch hot!';
+                    }
+                    $('.progressbar-cover').css('bottom' , ui.value + '%');
+                    $('html').css('backgroundColor', bkcolor);
+                    $('.text').html(textvalue);
+                }
+            });
+            $(".ui-slider-handle").text("Drag me!");
+        });
+       </script>
+       <script src="js/main.js"></script>
+</body>
+</html>
